@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Smart Notes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Royal Smart Notes</div>
+        <div class="nav-buttons">
+            <button class="nav-btn active" data-page="notes">Notes</button>
+            <button class="nav-btn" data-page="documents">Documents</button>
+            <button class="nav-btn" data-page="calendar">Calendar</button>
+            <button class="nav-btn" data-page="workout">Workout Planner</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Notes Page -->
+        <div id="notes-page" class="page active">
+            <div class="page-header">
+                <h1>Notes</h1>
+                <button id="create-note-btn" class="btn-primary">Create Note</button>
+            </div>
+
+            <div class="filters">
+                <input type="text" id="search-notes" class="search-input" placeholder="Search notes...">
+                <select id="filter-status" class="filter-select">
+                    <option value="all">All Notes</option>
+                    <option value="easy">Easy</option>
+                    <option value="normal">Normal</option>
+                    <option value="hard">Hard/Urgent</option>
+                </select>
+            </div>
+
+            <div id="notes-list" class="notes-grid"></div>
+        </div>
+
+        <!-- Documents Page -->
+        <div id="documents-page" class="page">
+            <div class="page-header">
+                <h1>Documents</h1>
+                <button id="create-document-btn" class="btn-primary">Create Document</button>
+            </div>
+            <div id="documents-list" class="documents-grid"></div>
+        </div>
+
+        <!-- Document Editor -->
+        <div id="document-editor" class="page" style="display: none;">
+            <div class="page-header">
+                <button id="back-to-documents" class="btn-secondary">← Back to Documents</button>
+                <input type="text" id="document-title" class="document-title-input" placeholder="Document Title">
+            </div>
+
+            <div class="editor-toolbar">
+                <button class="toolbar-btn" data-command="bold" title="Bold"><strong>B</strong></button>
+                <button class="toolbar-btn" data-command="italic" title="Italic"><em>I</em></button>
+                <button class="toolbar-btn" data-command="underline" title="Underline"><u>U</u></button>
+                <button class="toolbar-btn" data-command="formatBlock" data-value="h1" title="Heading 1">H1</button>
+                <button class="toolbar-btn" data-command="formatBlock" data-value="h2" title="Heading 2">H2</button>
+                <button class="toolbar-btn" data-command="insertUnorderedList" title="Bullet List">• List</button>
+                <button class="toolbar-btn" data-command="insertOrderedList" title="Number List">1. List</button>
+            </div>
+
+            <div id="document-content" class="document-editor-content" contenteditable="true"></div>
+            <div class="document-meta">Last edited: <span id="document-last-edited">Never</span></div>
+        </div>
+
+        <!-- Calendar Page -->
+        <div id="calendar-page" class="page">
+            <div class="page-header">
+                <h1>Calendar</h1>
+                <div class="calendar-nav">
+                    <button id="prev-month" class="btn-secondary">←</button>
+                    <span id="current-month" class="current-month"></span>
+                    <button id="next-month" class="btn-secondary">→</button>
+                </div>
+            </div>
+            <div id="calendar-grid" class="calendar-grid"></div>
+        </div>
+
+        <!-- Workout Planner Page -->
+        <div id="workout-page" class="page">
+            <div class="page-header">
+                <h1>Workout Planner</h1>
+            </div>
+            <div id="workout-container" class="workout-container"></div>
+        </div>
+    </main>
+
+    <!-- Note Modal -->
+    <div id="note-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Create Note</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="note-title" class="input-field" placeholder="Title">
+                <textarea id="note-content" class="textarea-field" placeholder="Content" rows="6"></textarea>
+                <input type="date" id="note-due-date" class="input-field">
+                <select id="note-priority" class="input-field">
+                    <option value="easy">Easy</option>
+                    <option value="normal">Normal</option>
+                    <option value="hard">Hard/Urgent</option>
+                </select>
+                <div class="modal-actions">
+                    <button id="save-note" class="btn-primary">Save Note</button>
+                    <button id="cancel-note" class="btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="calendar.js"></script>
+    <script src="documents.js"></script>
+    <script src="workout.js"></script>
+</body>
+</html>
